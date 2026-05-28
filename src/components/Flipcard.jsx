@@ -1,7 +1,19 @@
 import React, { useState } from "react";
 
+const colorMap = {
+  red: "bg-red-500",
+  blue: "bg-blue-500",
+  green: "bg-green-500",
+  yellow: "bg-yellow-500",
+  purple: "bg-purple-500",
+  pink: "bg-pink-500",
+  indigo: "bg-indigo-500",
+  orange: "bg-orange-500",
+};
+
 export default function FlipCard({ title, colorClass, items }) {
   const [flipped, setFlipped] = useState(false);
+  const bgColor = colorMap[colorClass] || "bg-blue-500";
 
   return (
     <div
@@ -15,7 +27,7 @@ export default function FlipCard({ title, colorClass, items }) {
       >
         {/* FRONT */}
         <div
-          className={`absolute inset-0 rounded-2xl bg-${colorClass}-500 text-white flex flex-col items-center justify-center p-4 backface-hidden`}
+          className={`absolute inset-0 rounded-2xl ${bgColor} text-white flex flex-col items-center justify-center p-4 backface-hidden`}
         >
           <h3 className="text-lg font-bold">{title}</h3>
           <p className="mt-2 text-sm opacity-80">Cliquer pour afficher les informations</p>

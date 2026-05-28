@@ -12,7 +12,7 @@
   }
 
   button, a {
-    @apply tap-highlight-transparent;
+    @apply outline-none;
   }
 
   h1, h2, h3, h4 {
@@ -25,8 +25,8 @@
   .perspective { @apply [perspective:1200px]; }
   .backface-hidden { @apply [backface-visibility:hidden]; }
   .preserve-3d { @apply [transform-style:preserve-3d]; }
-  .rotate-y-180 { @apply rotate-y-180; }
-  .flip-hover { @apply transition duration-600 ease-[cubic-bezier(.25,.8,.25,1)]; }
+  .rotate-y-180 { transform: rotateY(180deg); }
+  .flip-hover { @apply transition duration-700 ease-[cubic-bezier(.25,.8,.25,1)]; }
 
   /* SUBTITLE */
   .subtitle { @apply text-slate-500 text-lg font-medium; }
@@ -39,7 +39,7 @@
   }
 
   .card-jo {
-    @apply bg-gradient-to-br from-white to-slate-100 rounded-3xl border border-black/[0.05] shadow-card-jo transition-transform duration-250 ease-in;
+    @apply bg-gradient-to-br from-white to-slate-100 rounded-3xl border border-black/[0.05] shadow-card-jo transition-transform duration-200 ease-in;
   }
   .card-jo:hover {
     @apply -translate-y-1 shadow-card-jo-hover;
@@ -47,11 +47,11 @@
 
   /* BUTTONS */
   .btn-jo {
-    @apply px-6 py-3 rounded-xl font-semibold transition duration-250;
+    @apply px-6 py-3 rounded-xl font-semibold transition duration-200;
     @apply bg-gradient-to-br from-slate-900 to-slate-800 text-white;
   }
   .btn-jo:hover {
-    @apply from-slate-800 to-slate-700 -translate-y-0.5;
+    @apply bg-gradient-to-br from-slate-800 to-slate-700 -translate-y-0.5;
   }
 }
 
