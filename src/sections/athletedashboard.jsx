@@ -1,4 +1,4 @@
-import React from "react";
+import { Box, Flex, Grid, Text, Heading } from "@chakra-ui/react";
 import SectionTitle from "../components/SectionTitle";
 import {
   ResponsiveContainer,
@@ -16,73 +16,116 @@ import { athleteData, athleteTrend } from "../data/athlete";
 
 export default function AthleteDashboard() {
   return (
-    <section id="athlete" className="border-y border-slate-200 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-
+    <Box
+      as="section"
+      id="athlete"
+      borderY="1px solid"
+      borderColor="gray.200"
+      bg="white"
+    >
+      <Box maxW="7xl" mx="auto" px={{ base: 6, lg: 8 }} py={20}>
+        
         <SectionTitle
           eyebrow="Section 2"
           title="Dashboard de performance d'un athlète"
           description="Transposition du tableau analytique en dashboard interactif avec graphiques, animation et possibilité de tri ou de filtre."
         />
 
-        <div className="mt-12 grid gap-6 xl:grid-cols-[0.85fr_1.15fr]">
+        <Grid
+          mt={12}
+          gap={6}
+          templateColumns={{ base: "1fr", xl: "0.85fr 1.15fr" }}
+        >
 
-          {/* Bloc bio / résumé */}
-          <div className="rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl shadow-slate-300">
-            <p className="text-sm uppercase tracking-[0.25em] text-slate-400">
+          {/* Bloc bio */}
+          <Box
+            bg="gray.900"
+            color="white"
+            p={8}
+            rounded="2xl"
+            shadow="2xl"
+          >
+            <Text
+              fontSize="sm"
+              textTransform="uppercase"
+              letterSpacing="0.25em"
+              color="gray.400"
+            >
               Profil d'exemple
-            </p>
+            </Text>
 
-            <h3 className="mt-3 text-3xl font-black">Athlète olympique</h3>
+            <Heading mt={3} fontSize="3xl" fontWeight="black">
+              Athlète olympique
+            </Heading>
 
-            <p className="mt-4 text-sm leading-7 text-slate-300">
+            <Text mt={4} fontSize="sm" lineHeight="1.7" color="gray.300">
               Cette section est prête pour accueillir les données réelles de votre exercice 2.
               Elle inclut un encart bio, des métriques clés et deux graphiques interactifs.
-            </p>
+            </Text>
 
-            <div className="mt-8 grid grid-cols-3 gap-3">
-              <div className="rounded-2xl bg-white/10 p-4">
-                <p className="text-xs text-slate-400">Discipline</p>
-                <p className="mt-2 text-lg font-bold">Sprint</p>
-              </div>
+            <Grid mt={8} templateColumns="repeat(3, 1fr)" gap={3}>
+              <Box bg="whiteAlpha.200" p={4} rounded="2xl">
+                <Text fontSize="xs" color="gray.400">Discipline</Text>
+                <Text mt={2} fontSize="lg" fontWeight="bold">Sprint</Text>
+              </Box>
 
-              <div className="rounded-2xl bg-white/10 p-4">
-                <p className="text-xs text-slate-400">Objectif</p>
-                <p className="mt-2 text-lg font-bold">Finale</p>
-              </div>
+              <Box bg="whiteAlpha.200" p={4} rounded="2xl">
+                <Text fontSize="xs" color="gray.400">Objectif</Text>
+                <Text mt={2} fontSize="lg" fontWeight="bold">Finale</Text>
+              </Box>
 
-              <div className="rounded-2xl bg-white/10 p-4">
-                <p className="text-xs text-slate-400">Forme</p>
-                <p className="mt-2 text-lg font-bold">92%</p>
-              </div>
-            </div>
-          </div>
+              <Box bg="whiteAlpha.200" p={4} rounded="2xl">
+                <Text fontSize="xs" color="gray.400">Forme</Text>
+                <Text mt={2} fontSize="lg" fontWeight="bold">92%</Text>
+              </Box>
+            </Grid>
+          </Box>
 
           {/* Graphiques */}
-          <div className="grid gap-6">
+          <Grid gap={6}>
 
             {/* Bar chart */}
-            <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6">
-              <p className="mb-4 text-lg font-bold">Comparaison par épreuve</p>
+            <Box
+              bg="gray.50"
+              border="1px solid"
+              borderColor="gray.200"
+              p={6}
+              rounded="2xl"
+            >
+              <Text mb={4} fontSize="lg" fontWeight="bold">
+                Comparaison par épreuve
+              </Text>
 
-              <div className="h-72">
+              <Box h="72">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={athleteData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="event" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="consistency" radius={[8, 8, 0, 0]} fill="#1e293b" />
+                    <Bar
+                      dataKey="consistency"
+                      radius={[8, 8, 0, 0]}
+                      fill="#1e293b"
+                    />
                   </BarChart>
                 </ResponsiveContainer>
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* Line chart */}
-            <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6">
-              <p className="mb-4 text-lg font-bold">Progression sur 5 périodes</p>
+            <Box
+              bg="gray.50"
+              border="1px solid"
+              borderColor="gray.200"
+              p={6}
+              rounded="2xl"
+            >
+              <Text mb={4} fontSize="lg" fontWeight="bold">
+                Progression sur 5 périodes
+              </Text>
 
-              <div className="h-72">
+              <Box h="72">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={athleteTrend}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -98,12 +141,12 @@ export default function AthleteDashboard() {
                     />
                   </LineChart>
                 </ResponsiveContainer>
-              </div>
-            </div>
+              </Box>
+            </Box>
 
-          </div>
-        </div>
-      </div>
-    </section>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
   );
 }

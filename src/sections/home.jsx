@@ -1,76 +1,149 @@
-import React from "react";
+import { Box, Grid, Text, Heading, Link, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
 import { ChevronRight } from "lucide-react";
 
-const olympicPalette = [
-  "bg-blue-600",
-  "bg-yellow-400",
-  "bg-black",
-  "bg-green-500",
-  "bg-red-500",
-];
+const MotionBox = motion(Box);
 
 export default function Home() {
   return (
-    <section id="home" className="relative overflow-hidden">
+    <Box as="section" id="home" position="relative" overflow="hidden">
       
       {/* Background gradients */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.16),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(239,68,68,0.12),_transparent_30%)]" />
+      <Box
+        position="absolute"
+        inset="0"
+        bg="
+          radial-gradient(circle at top right, rgba(59,130,246,0.16), transparent 35%),
+          radial-gradient(circle at bottom left, rgba(239,68,68,0.12), transparent 30%)
+        "
+      />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-28">
+      <Grid
+        position="relative"
+        maxW="7xl"
+        mx="auto"
+        px={{ base: 6, lg: 8 }}
+        py={{ base: 20, lg: 28 }}
+        gap={10}
+        templateColumns={{ base: "1fr", lg: "1.2fr 0.8fr" }}
+      >
 
         {/* LEFT SIDE — Text + CTA */}
-        <div className="space-y-8">
-
-          <motion.div
+        <Flex direction="column" gap={8}>
+          
+          {/* Badge animé */}
+          <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-800"
+            display="inline-flex"
+            alignItems="center"
+            gap={2}
+            rounded="full"
+            border="1px solid"
+            borderColor="blue.200"
+            bg="blue.50"
+            px={4}
+            py={2}
+            fontSize="sm"
+            fontWeight="medium"
+            color="blue.800"
           >
             Projet Vibe Coding
-          </motion.div>
+          </MotionBox>
 
-          <div className="space-y-5">
-            <h1 className="max-w-4xl text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
+          {/* Titre + description */}
+          <Flex direction="column" gap={5}>
+            <Heading
+              maxW="4xl"
+              fontSize={{ base: "4xl", sm: "6xl" }}
+              fontWeight="black"
+              letterSpacing="-0.02em"
+              color="gray.950"
+            >
               Explorer l'écosystème, les performances, l'héritage et les innovations des JO Paris 2024.
-            </h1>
+            </Heading>
 
-            <p className="max-w-2xl text-lg leading-8 text-slate-600">
+            <Text
+              maxW="2xl"
+              fontSize="lg"
+              lineHeight="1.8"
+              color="gray.600"
+            >
               Cette webapp transpose les quatre exercices du projet en une expérience React moderne :
               navigation claire, cartes interactives, dashboard athlète, récit immersif et analyse des innovations.
-            </p>
-          </div>
+            </Text>
+          </Flex>
 
-          <div className="flex flex-wrap gap-4">
-            <a
+          {/* CTA */}
+          <Flex wrap="wrap" gap={4}>
+            <Link
               href="#ecosysteme"
-              className="rounded-2xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5"
+              rounded="2xl"
+              bg="gray.950"
+              px={6}
+              py={3}
+              fontSize="sm"
+              fontWeight="semibold"
+              color="white"
+              shadow="lg"
+              transition="0.2s"
+              _hover={{ transform: "translateY(-2px)" }}
             >
               Voir la démo
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="#innovations"
-              className="rounded-2xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400"
+              rounded="2xl"
+              border="1px solid"
+              borderColor="gray.300"
+              bg="white"
+              px={6}
+              py={3}
+              fontSize="sm"
+              fontWeight="semibold"
+              color="gray.800"
+              transition="0.2s"
+              _hover={{ borderColor: "gray.400" }}
             >
               Aller aux innovations
-            </a>
-          </div>
-        </div>
+            </Link>
+          </Flex>
+        </Flex>
 
         {/* RIGHT SIDE — Cards */}
-        <motion.div
+        <MotionBox
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid gap-4 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl shadow-slate-200"
+          display="grid"
+          gap={4}
+          rounded="2xl"
+          border="1px solid"
+          borderColor="gray.200"
+          bg="white"
+          p={5}
+          shadow="2xl"
         >
-          <div className="rounded-[1.5rem] bg-gradient-to-br from-slate-950 via-blue-900 to-blue-600 p-6 text-white">
-            <p className="text-sm uppercase tracking-[0.25em] text-blue-100">Structure attendue</p>
+          {/* Bloc structure attendue */}
+          <Box
+            rounded="1.5rem"
+            bgGradient="linear(to-br, slate.950, blue.900, blue.600)"
+            p={6}
+            color="white"
+          >
+            <Text
+              fontSize="sm"
+              textTransform="uppercase"
+              letterSpacing="0.25em"
+              color="blue.100"
+            >
+              Structure attendue
+            </Text>
 
-            <div className="mt-6 grid gap-3">
+            <Grid mt={6} gap={3}>
               {[
                 "Accueil & navigation",
                 "Écosystème JO interactif",
@@ -78,31 +151,44 @@ export default function Home() {
                 "Récit sur l'héritage",
                 "Rapport innovations",
               ].map((item) => (
-                <div
+                <Flex
                   key={item}
-                  className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 backdrop-blur"
+                  align="center"
+                  justify="space-between"
+                  rounded="2xl"
+                  bg="whiteAlpha.200"
+                  px={4}
+                  py={3}
+                  backdropFilter="blur(10px)"
                 >
-                  <span className="text-sm font-medium">{item}</span>
-                  <ChevronRight className="h-4 w-4" />
-                </div>
+                  <Text fontSize="sm" fontWeight="medium">
+                    {item}
+                  </Text>
+                  <ChevronRight size={16} />
+                </Flex>
               ))}
-            </div>
-          </div>
+            </Grid>
+          </Box>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-[1.5rem] bg-blue-50 p-5">
-              <p className="text-sm text-slate-500">UX visée</p>
-              <p className="mt-2 text-2xl font-bold">Simple, claire, responsive</p>
-            </div>
+          {/* Deux petites cartes */}
+          <Grid templateColumns="repeat(2, 1fr)" gap={4}>
+            <Box rounded="1.5rem" bg="blue.50" p={5}>
+              <Text fontSize="sm" color="gray.500">UX visée</Text>
+              <Text mt={2} fontSize="2xl" fontWeight="bold">
+                Simple, claire, responsive
+              </Text>
+            </Box>
 
-            <div className="rounded-[1.5rem] bg-red-50 p-5">
-              <p className="text-sm text-slate-500">Interactivité</p>
-              <p className="mt-2 text-2xl font-bold">Filtres, hover, graphiques</p>
-            </div>
-          </div>
-        </motion.div>
+            <Box rounded="1.5rem" bg="red.50" p={5}>
+              <Text fontSize="sm" color="gray.500">Interactivité</Text>
+              <Text mt={2} fontSize="2xl" fontWeight="bold">
+                Filtres, hover, graphiques
+              </Text>
+            </Box>
+          </Grid>
+        </MotionBox>
 
-      </div>
-    </section>
+      </Grid>
+    </Box>
   );
 }

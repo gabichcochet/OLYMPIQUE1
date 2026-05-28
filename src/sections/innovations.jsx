@@ -1,5 +1,14 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import {
+  Box,
+  Grid,
+  Text,
+  Heading,
+  Button,
+  Flex,
+} from "@chakra-ui/react";
 import SectionTitle from "../components/SectionTitle";
+
 import {
   ResponsiveContainer,
   RadarChart,
@@ -30,8 +39,14 @@ export default function Innovations() {
   }));
 
   return (
-    <section id="innovations" className="border-t border-slate-200 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <Box
+      as="section"
+      id="innovations"
+      borderTop="1px solid"
+      borderColor="gray.200"
+      bg="white"
+    >
+      <Box maxW="7xl" mx="auto" px={{ base: 6, lg: 8 }} py={20}>
 
         <SectionTitle
           eyebrow="Section 4"
@@ -40,80 +55,149 @@ export default function Innovations() {
         />
 
         {/* Filtres */}
-        <div className="mt-8 flex flex-wrap gap-3">
+        <Flex mt={8} wrap="wrap" gap={3}>
           {categories.map((category) => (
-            <button
+            <Button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                selectedCategory === category
-                  ? "bg-slate-950 text-white"
-                  : "border border-slate-300 bg-white text-slate-700"
-              }`}
+              rounded="full"
+              px={4}
+              py={2}
+              fontSize="sm"
+              fontWeight="semibold"
+              transition="0.2s"
+              bg={selectedCategory === category ? "gray.950" : "white"}
+              color={selectedCategory === category ? "white" : "gray.700"}
+              border={selectedCategory === category ? "none" : "1px solid"}
+              borderColor="gray.300"
+              _hover={{
+                bg: selectedCategory === category ? "gray.800" : "gray.50",
+              }}
             >
               {category}
-            </button>
+            </Button>
           ))}
-        </div>
+        </Flex>
 
-        <div className="mt-10 grid gap-6 xl:grid-cols-[1fr_1fr]">
+        <Grid
+          mt={10}
+          gap={6}
+          templateColumns={{ base: "1fr", xl: "1fr 1fr" }}
+        >
 
           {/* Liste des innovations */}
-          <div className="grid gap-4">
+          <Grid gap={4}>
             {filteredInnovations.map((item) => {
               const Icon = item.icon;
               return (
-                <div
+                <Box
                   key={item.name}
-                  className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6"
+                  rounded="2xl"
+                  border="1px solid"
+                  borderColor="gray.200"
+                  bg="gray.50"
+                  p={6}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="rounded-2xl bg-white p-3 shadow-sm">
-                      <Icon className="h-6 w-6 text-slate-700" />
-                    </div>
+                  <Flex align="start" gap={4}>
+                    <Box
+                      rounded="2xl"
+                      bg="white"
+                      p={3}
+                      shadow="sm"
+                    >
+                      <Icon size={24} color="#334155" />
+                    </Box>
 
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                    <Box>
+                      <Text
+                        fontSize="xs"
+                        fontWeight="semibold"
+                        textTransform="uppercase"
+                        letterSpacing="0.2em"
+                        color="gray.400"
+                      >
                         {item.category}
-                      </p>
+                      </Text>
 
-                      <h3 className="mt-1 text-xl font-bold text-slate-900">
+                      <Heading
+                        mt={1}
+                        fontSize="xl"
+                        fontWeight="bold"
+                        color="gray.900"
+                      >
                         {item.name}
-                      </h3>
+                      </Heading>
 
-                      <p className="mt-3 text-sm leading-6 text-slate-600">
+                      <Text
+                        mt={3}
+                        fontSize="sm"
+                        lineHeight="1.6"
+                        color="gray.600"
+                      >
                         {item.summary}
-                      </p>
-                    </div>
-                  </div>
+                      </Text>
+                    </Box>
+                  </Flex>
 
                   {/* Scores */}
-                  <div className="mt-5 grid grid-cols-3 gap-3">
-                    <div className="rounded-2xl bg-white p-4 text-center shadow-sm">
-                      <p className="text-xs text-slate-500">Efficacité</p>
-                      <p className="mt-2 text-2xl font-black">{item.effectiveness}</p>
-                    </div>
+                  <Grid mt={5} templateColumns="repeat(3, 1fr)" gap={3}>
+                    <Box
+                      rounded="2xl"
+                      bg="white"
+                      p={4}
+                      textAlign="center"
+                      shadow="sm"
+                    >
+                      <Text fontSize="xs" color="gray.500">Efficacité</Text>
+                      <Text mt={2} fontSize="2xl" fontWeight="black">
+                        {item.effectiveness}
+                      </Text>
+                    </Box>
 
-                    <div className="rounded-2xl bg-white p-4 text-center shadow-sm">
-                      <p className="text-xs text-slate-500">Acceptabilité</p>
-                      <p className="mt-2 text-2xl font-black">{item.acceptability}</p>
-                    </div>
+                    <Box
+                      rounded="2xl"
+                      bg="white"
+                      p={4}
+                      textAlign="center"
+                      shadow="sm"
+                    >
+                      <Text fontSize="xs" color="gray.500">Acceptabilité</Text>
+                      <Text mt={2} fontSize="2xl" fontWeight="black">
+                        {item.acceptability}
+                      </Text>
+                    </Box>
 
-                    <div className="rounded-2xl bg-white p-4 text-center shadow-sm">
-                      <p className="text-xs text-slate-500">Pérennité</p>
-                      <p className="mt-2 text-2xl font-black">{item.durability}</p>
-                    </div>
-                  </div>
-                </div>
+                    <Box
+                      rounded="2xl"
+                      bg="white"
+                      p={4}
+                      textAlign="center"
+                      shadow="sm"
+                    >
+                      <Text fontSize="xs" color="gray.500">Pérennité</Text>
+                      <Text mt={2} fontSize="2xl" fontWeight="black">
+                        {item.durability}
+                      </Text>
+                    </Box>
+                  </Grid>
+                </Box>
               );
             })}
-          </div>
+          </Grid>
 
           {/* Radar chart */}
-          <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6">
-            <p className="mb-4 text-lg font-bold">Visualisation d'impact</p>
+          <Box
+            rounded="2xl"
+            border="1px solid"
+            borderColor="gray.200"
+            bg="gray.50"
+            p={6}
+          >
+            <Text mb={4} fontSize="lg" fontWeight="bold">
+              Visualisation d'impact
+            </Text>
 
-            <div className="h-[28rem]">
+            <Box h="28rem">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
                   <PolarGrid />
@@ -140,20 +224,22 @@ export default function Innovations() {
                   <Tooltip />
                 </RadarChart>
               </ResponsiveContainer>
-            </div>
+            </Box>
 
-            <div className="mt-6 rounded-3xl bg-white p-5 shadow-sm">
-              <p className="text-sm font-semibold text-slate-800">Lecture recommandée</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
+            <Box mt={6} rounded="3xl" bg="white" p={5} shadow="sm">
+              <Text fontSize="sm" fontWeight="semibold" color="gray.800">
+                Lecture recommandée
+              </Text>
+              <Text mt={2} fontSize="sm" lineHeight="1.6" color="gray.600">
                 Certaines technologies montrent un fort potentiel durable, comme la traduction
                 instantanée ou le 3D Athlete Tracking, tandis que d'autres nécessitent un
                 encadrement éthique plus strict, notamment la vidéosurveillance algorithmique.
-              </p>
-            </div>
-          </div>
+              </Text>
+            </Box>
+          </Box>
 
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Box>
+    </Box>
   );
 }

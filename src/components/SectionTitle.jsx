@@ -1,19 +1,38 @@
-import React from "react";
+import { Box, Text, Heading } from "@chakra-ui/react";
 
 export default function SectionTitle({ eyebrow, title, description }) {
   return (
-    <div className="max-w-3xl space-y-3">
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">
+    <Box maxW="3xl" display="flex" flexDirection="column" gap={3}>
+      
+      {/* Eyebrow */}
+      <Text
+        fontSize="sm"
+        fontWeight="semibold"
+        textTransform="uppercase"
+        letterSpacing="0.25em"
+        color="blue.700"
+      >
         {eyebrow}
-      </p>
+      </Text>
 
-      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      {/* Title */}
+      <Heading
+        fontWeight="bold"
+        letterSpacing="-0.02em"
+        color="gray.900"
+        fontSize={{ base: "3xl", sm: "4xl" }}
+      >
         {title}
-      </h2>
+      </Heading>
 
-      <p className="text-base leading-7 text-slate-600 sm:text-lg">
+      {/* Description */}
+      <Text
+        fontSize={{ base: "md", sm: "lg" }}
+        lineHeight="1.75"
+        color="gray.600"
+      >
         {description}
-      </p>
-    </div>
+      </Text>
+    </Box>
   );
 }

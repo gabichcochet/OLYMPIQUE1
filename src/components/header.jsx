@@ -1,36 +1,70 @@
-import React from "react";
+import { Box, Flex, HStack, Text, Link } from "@chakra-ui/react";
 
 const olympicPalette = [
-  "bg-blue-600",
-  "bg-yellow-400",
-  "bg-black",
-  "bg-green-500",
-  "bg-red-500",
+  "blue.600",
+  "yellow.400",
+  "black",
+  "green.500",
+  "red.500",
 ];
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/20 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        
+    <Box
+      as="header"
+      position="sticky"
+      top="0"
+      zIndex="40"
+      bg="whiteAlpha.800"
+      backdropFilter="blur(20px)"
+      borderBottom="1px solid rgba(255,255,255,0.2)"
+    >
+      <Flex
+        maxW="7xl"
+        mx="auto"
+        px={{ base: 4, lg: 8 }}
+        py={4}
+        align="center"
+        justify="space-between"
+      >
         {/* Logo + titre */}
-        <a href="#home" className="flex items-center gap-3 font-semibold">
-          <div className="flex gap-1.5">
-            {olympicPalette.map((item) => (
-              <span key={item} className={`h-4 w-4 rounded-full ${item}`} />
+        <Link href="#home" display="flex" alignItems="center" gap={3} fontWeight="semibold">
+          <HStack spacing="6px">
+            {olympicPalette.map((color, i) => (
+              <Box
+                key={i}
+                w="14px"
+                h="14px"
+                rounded="full"
+                bg={color}
+              />
             ))}
-          </div>
-          <span>JO Paris 2024 — Webapp</span>
-        </a>
+          </HStack>
+          <Text>JO Paris 2024 — Webapp</Text>
+        </Link>
 
         {/* Navigation */}
-        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex">
-          <a href="#ecosysteme" className="hover:text-slate-900">Écosystème</a>
-          <a href="#athlete" className="hover:text-slate-900">Athlète</a>
-          <a href="#heritage" className="hover:text-slate-900">Héritage</a>
-          <a href="#innovations" className="hover:text-slate-900">Innovations</a>
-        </nav>
-      </div>
-    </header>
+        <HStack
+          spacing={6}
+          display={{ base: "none", md: "flex" }}
+          fontSize="sm"
+          fontWeight="medium"
+          color="gray.600"
+        >
+          <Link href="#ecosysteme" _hover={{ color: "gray.900" }}>
+            Écosystème
+          </Link>
+          <Link href="#athlete" _hover={{ color: "gray.900" }}>
+            Athlète
+          </Link>
+          <Link href="#heritage" _hover={{ color: "gray.900" }}>
+            Héritage
+          </Link>
+          <Link href="#innovations" _hover={{ color: "gray.900" }}>
+            Innovations
+          </Link>
+        </HStack>
+      </Flex>
+    </Box>
   );
 }
