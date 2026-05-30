@@ -1,7 +1,7 @@
 import { Box, Grid, Text, Heading, Image, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
-import StatCard from "../components/StatCard";
+import StatCard from "../components/statcard";
 import { impactItems } from "../data/heritage";
 
 const MotionBox = motion(Box);

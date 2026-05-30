@@ -1,5 +1,5 @@
 import { Box, Grid, Heading, Text } from "@chakra-ui/react";
-import FlipCard from "../components/FlipCard";
+import FlipCard from "../components/Flipcard";
 import SectionTitle from "../components/SectionTitle";
 import { ecosystemData } from "../data/ecosystem";
 
