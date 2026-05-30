@@ -1,14 +1,14 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 // Composants globaux
-import Header from "./components/Header";
+import Header from "./components/header";
 
 // Sections principales
-import Home from "./sections/Home";
-import Ecosystem from "./sections/Ecosystem";
-import AthleteDashboard from "./sections/AthleteDashboard";
+import Home from "./sections/home";
+import Ecosystem from "./sections/ecosystem";
+import AthleteDashboard from "./sections/athletedashboard";
 import Heritage from "./sections/Heritage";
-import Innovations from "./sections/Innovations";
+import Innovations from "./sections/innovations";
 
 export default function App() {
   return (
