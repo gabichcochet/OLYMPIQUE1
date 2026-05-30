@@ -1,4 +1,4 @@
-import { Box, Text, Heading } from "@chakra-ui/react";
+import { Box, Text, Heading, Progress } from "@chakra-ui/react";
 
 export default function StatCard({ item }) {
   const Icon = item.icon;
@@ -33,12 +33,21 @@ export default function StatCard({ item }) {
         {item.title}
       </Text>
 
-      {/* Valeur */}
+      {/* Valeur principale */}
       <Heading mt={2} fontSize="3xl" fontWeight="bold" color="gray.900">
         {item.value}
       </Heading>
 
-      {/* Note */}
+      {/* Mini visualisation */}
+      <Progress
+        mt={3}
+        value={item.value}
+        colorScheme="blue"
+        size="sm"
+        rounded="full"
+      />
+
+      {/* Note / description */}
       <Text mt={3} fontSize="sm" lineHeight="1.6" color="gray.600">
         {item.note}
       </Text>

@@ -21,8 +21,8 @@ export default function FlipCard({ title, colorClass, items }) {
 
   return (
     <Box
-      h="200px"
-      w="260px"
+      h={{ base: "auto", md: "260px" }} // ✅ hauteur adaptative
+      w={{ base: "100%", md: "280px" }} // ✅ largeur légèrement augmentée
       cursor="pointer"
       position="relative"
       onClick={() => setFlipped(!flipped)}
@@ -47,11 +47,13 @@ export default function FlipCard({ title, colorClass, items }) {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          p={4}
+          p={6} // ✅ plus d’espace intérieur
           style={{ backfaceVisibility: "hidden" }}
         >
-          <Heading size="md">{title}</Heading>
-          <Text mt={2} fontSize="sm" opacity={0.8}>
+          <Heading size="md" textAlign="center">
+            {title}
+          </Heading>
+          <Text mt={3} fontSize="sm" opacity={0.8} textAlign="center">
             Cliquer pour afficher les informations
           </Text>
         </Box>
@@ -63,18 +65,19 @@ export default function FlipCard({ title, colorClass, items }) {
           rounded="2xl"
           bg="white"
           color="gray.900"
-          p={4}
+          p={5}
           shadow="lg"
+          overflowY="auto" // ✅ scroll si trop de texte
           style={{
             transform: "rotateY(180deg)",
             backfaceVisibility: "hidden",
           }}
         >
-          <Heading size="md" mb={2}>
+          <Heading size="md" mb={3} textAlign="center">
             {title}
           </Heading>
 
-          <List styleType="disc" spacing={1} fontSize="sm">
+          <List styleType="disc" spacing={2} fontSize="sm" pl={3}>
             {items.map((item, index) => (
               <ListItem key={index}>{item}</ListItem>
             ))}

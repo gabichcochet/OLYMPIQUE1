@@ -1,6 +1,5 @@
 import { Box, Grid, Text, Heading, Link, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import SectionTitle from "../components/SectionTitle";
 import { ChevronRight } from "lucide-react";
 
 const MotionBox = motion(Box);
@@ -9,13 +8,13 @@ export default function Home() {
   return (
     <Box as="section" id="home" position="relative" overflow="hidden">
       
-      {/* Background gradients */}
+      {/* 🌈 Background gradients plus doux */}
       <Box
         position="absolute"
         inset="0"
         bg="
-          radial-gradient(circle at top right, rgba(59,130,246,0.16), transparent 35%),
-          radial-gradient(circle at bottom left, rgba(239,68,68,0.12), transparent 30%)
+          radial-gradient(circle at top right, rgba(59,130,246,0.15), transparent 40%),
+          radial-gradient(circle at bottom left, rgba(239,68,68,0.1), transparent 35%)
         "
       />
 
@@ -25,18 +24,19 @@ export default function Home() {
         mx="auto"
         px={{ base: 6, lg: 8 }}
         py={{ base: 20, lg: 28 }}
-        gap={10}
+        gap={12}
         templateColumns={{ base: "1fr", lg: "1.2fr 0.8fr" }}
+        alignItems="center"
       >
 
-        {/* LEFT SIDE — Text + CTA */}
+        {/* 🧭 LEFT SIDE — Text + CTA */}
         <Flex direction="column" gap={8}>
           
           {/* Badge animé */}
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
             display="inline-flex"
             alignItems="center"
             gap={2}
@@ -49,6 +49,7 @@ export default function Home() {
             fontSize="sm"
             fontWeight="medium"
             color="blue.800"
+            shadow="sm"
           >
             Projet Vibe Coding
           </MotionBox>
@@ -61,6 +62,7 @@ export default function Home() {
               fontWeight="black"
               letterSpacing="-0.02em"
               color="gray.950"
+              lineHeight="1.1"
             >
               Explorer l'écosystème, les performances, l'héritage et les innovations des JO Paris 2024.
             </Heading>
@@ -71,7 +73,7 @@ export default function Home() {
               lineHeight="1.8"
               color="gray.600"
             >
-              Cette webapp transpose les quatre exercices du projet en une expérience React moderne :
+              Cette webapp transpose les quatre exercices du projet en une expérience React moderne :
               navigation claire, cartes interactives, dashboard athlète, récit immersif et analyse des innovations.
             </Text>
           </Flex>
@@ -81,15 +83,15 @@ export default function Home() {
             <Link
               href="#ecosysteme"
               rounded="2xl"
-              bg="gray.950"
+              bg="blue.600"
               px={6}
               py={3}
               fontSize="sm"
               fontWeight="semibold"
               color="white"
-              shadow="lg"
-              transition="0.2s"
-              _hover={{ transform: "translateY(-2px)" }}
+              shadow="md"
+              transition="all 0.25s ease"
+              _hover={{ bg: "blue.700", transform: "translateY(-2px)" }}
             >
               Voir la démo
             </Link>
@@ -105,87 +107,120 @@ export default function Home() {
               fontSize="sm"
               fontWeight="semibold"
               color="gray.800"
-              transition="0.2s"
-              _hover={{ borderColor: "gray.400" }}
+              transition="all 0.25s ease"
+              _hover={{ borderColor: "gray.400", transform: "translateY(-2px)" }}
             >
               Aller aux innovations
             </Link>
           </Flex>
         </Flex>
 
-        {/* RIGHT SIDE — Cards */}
+        {/* 📊 RIGHT SIDE — Cards */}
         <MotionBox
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           display="grid"
-          gap={4}
+          gap={5}
           rounded="2xl"
           border="1px solid"
           borderColor="gray.200"
           bg="white"
-          p={5}
-          shadow="2xl"
+          p={6}
+          shadow="xl"
         >
           {/* Bloc structure attendue */}
           <Box
             rounded="1.5rem"
-            bgGradient="linear(to-br, slate.950, blue.900, blue.600)"
+            bgGradient="linear(to-br, slate.900, blue.800)"
             p={6}
             color="white"
+            shadow="md"
           >
             <Text
               fontSize="sm"
               textTransform="uppercase"
               letterSpacing="0.25em"
-              color="blue.100"
+              color="blue.200"
             >
-              Structure attendue
+              Structure
             </Text>
 
             <Grid mt={6} gap={3}>
               {[
-                "Accueil & navigation",
-                "Écosystème JO interactif",
-                "Dashboard athlète",
-                "Récit sur l'héritage",
-                "Rapport innovations",
+                { label: "Accueil & navigation", href: "#home" },
+                { label: "Écosystème JO interactif", href: "#ecosysteme" },
+                { label: "Dashboard athlète", href: "#athlete" },
+                { label: "Récit sur l'héritage", href: "#heritage" },
+                { label: "Rapport innovations", href: "#innovations" },
               ].map((item) => (
-                <Flex
-                  key={item}
-                  align="center"
-                  justify="space-between"
-                  rounded="2xl"
-                  bg="whiteAlpha.200"
-                  px={4}
-                  py={3}
-                  backdropFilter="blur(10px)"
-                >
-                  <Text fontSize="sm" fontWeight="medium">
-                    {item}
-                  </Text>
-                  <ChevronRight size={16} />
-                </Flex>
+                <Link key={item.label} href={item.href} _hover={{ textDecoration: "none" }}>
+                  <Flex
+                    align="center"
+                    justify="space-between"
+                    rounded="2xl"
+                    bg="whiteAlpha.200"
+                    px={4}
+                    py={3}
+                    backdropFilter="blur(10px)"
+                    transition="all 0.2s ease"
+                    _hover={{ bg: "whiteAlpha.300" }}
+                  >
+                    <Text fontSize="sm" fontWeight="medium">
+                      {item.label}
+                    </Text>
+                    <ChevronRight size={16} />
+                  </Flex>
+                </Link>
               ))}
             </Grid>
           </Box>
 
-          {/* Deux petites cartes */}
-          <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-            <Box rounded="1.5rem" bg="blue.50" p={5}>
-              <Text fontSize="sm" color="gray.500">UX visée</Text>
-              <Text mt={2} fontSize="2xl" fontWeight="bold">
-                Simple, claire, responsive
-              </Text>
-            </Box>
+{/* Deux petites cartes */}
+<Flex gap={4} mt={2}>
 
-            <Box rounded="1.5rem" bg="red.50" p={5}>
-              <Text fontSize="sm" color="gray.500">Interactivité</Text>
-              <Text mt={2} fontSize="2xl" fontWeight="bold">
-                Filtres, hover, graphiques
-              </Text>
-            </Box>
-          </Grid>
+  {/* Carte 1 */}
+  <Box
+    flex="1"
+    rounded="1.5rem"
+    bg="gray.50"
+    border="1px solid"
+    borderColor="gray.200"
+    p={5}
+    shadow="md"
+    transition="all 0.2s ease"
+    _hover={{ transform: "translateY(-3px)", shadow: "lg" }}
+  >
+    <Text fontSize="sm" fontWeight="semibold" color="gray.700">
+      Interactivité
+    </Text>
+    <Text mt={2} fontSize="sm" color="gray.600">
+      Animations, transitions, scroll‑storytelling et cartes dynamiques.
+    </Text>
+  </Box>
+
+  {/* Carte 2 */}
+  <Box
+    flex="1"
+    rounded="1.5rem"
+    bg="gray.50"
+    border="1px solid"
+    borderColor="gray.200"
+    p={5}
+    shadow="md"
+    transition="all 0.2s ease"
+    _hover={{ transform: "translateY(-3px)", shadow: "lg" }}
+  >
+    <Text fontSize="sm" fontWeight="semibold" color="gray.700">
+      Visualisations
+    </Text>
+    <Text mt={2} fontSize="sm" color="gray.600">
+      Graphiques, radars, jauges et données filtrables.
+    </Text>
+  </Box>
+
+</Flex>
+
         </MotionBox>
 
       </Grid>

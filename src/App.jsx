@@ -1,9 +1,9 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 
-// Components
+// Composants globaux
 import Header from "./components/Header";
 
-// Sections
+// Sections principales
 import Home from "./sections/Home";
 import Ecosystem from "./sections/Ecosystem";
 import AthleteDashboard from "./sections/AthleteDashboard";
@@ -13,11 +13,8 @@ import Innovations from "./sections/Innovations";
 export default function App() {
   return (
     <Box minH="100vh" bg="gray.50" color="gray.900">
-
-      {/* Header global */}
       <Header />
 
-      {/* Sections */}
       <Box as="main">
         <Home />
         <Ecosystem />
@@ -26,7 +23,6 @@ export default function App() {
         <Innovations />
       </Box>
 
-      {/* Footer */}
       <Box
         as="footer"
         borderTop="1px solid"
@@ -45,15 +41,10 @@ export default function App() {
           fontSize="sm"
           color="gray.400"
         >
-          <Text>
-            Projet React prêt à être adapté, testé puis déployé sur Vercel ou Netlify.
-          </Text>
-          <Text>
-            Remplace les données d'exemple de l'athlète par votre vrai exercice 2 pour finaliser le rendu.
-          </Text>
+          <Text>Projet React prêt pour déploiement.</Text>
+          <Text>Dashboard athlète intégré.</Text>
         </Flex>
       </Box>
-
     </Box>
   );
 }
